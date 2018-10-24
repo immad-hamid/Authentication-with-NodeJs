@@ -6,14 +6,14 @@ const User      = require('../models/user');
 const config    = require('../config');
 
 // signup API
-router.post('/signup', (req, res, next) => {
+router.post('/register', (req, res, next) => {
     let user = new User();
     // user properties we need to capture
     user.name       = req.body.name;
     user.email      = req.body.email;
     user.password   = req.body.password;
     user.picture    = user.gravatar();
-    user.isSeller   = req.body.isSeller;
+    user.isTeacher  = req.body.isTeacher;
 
     User.findOne({ email: req.body.email }, (err, existingUser) => {
         if (existingUser) {
